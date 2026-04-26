@@ -4,9 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Andy Kim</title>
-  <link rel="stylesheet" href="styles.css?v=6" />
+  <link rel="stylesheet" href="styles.css?v=7" />
 </head>
-<body class="landing-page">
+<body>
 
   <header>
     <a class="logo" href="index.html">AK</a>
@@ -19,21 +19,70 @@
 
   <nav class="nav-overlay">
     <ul>
-      <li><a href="work.html">Work</a></li>
+      <li><a href="index.html">Work</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
   </nav>
 
-  <main class="landing">
-    <div class="landing-content">
-      <h1 class="landing-name">Andy Kim</h1>
-      <p class="landing-title">Product Design Engineer</p>
-      <p class="landing-company">SharkNinja</p>
-      <a href="work.html" class="landing-cta">View Work &rarr;</a>
+  <main>
+    <div class="home-header">
+      <h1 class="home-name">Andy Kim</h1>
+      <p class="home-sub">Product Design Engineer &mdash; SharkNinja</p>
     </div>
+
+    <section class="projects">
+      <div class="project-card">
+        <a href="project.html?id=shark-vacuum">
+          <div class="project-image">
+            <img src="https://placehold.co/600x440/e8e8e8/999?text=." alt="Shark Cordless Vacuum" />
+          </div>
+          <div class="project-info">
+            <p class="project-label"><span class="category">Shark</span> &mdash; <span class="project-name">Cordless Vacuum System</span></p>
+            <div class="divider"></div>
+          </div>
+        </a>
+      </div>
+
+      <div class="project-card offset">
+        <a href="project.html?id=ninja-kitchen">
+          <div class="project-image">
+            <img src="https://placehold.co/600x440/e8e8e8/999?text=." alt="Ninja Kitchen Appliance" />
+          </div>
+          <div class="project-info">
+            <p class="project-label"><span class="category">Ninja</span> &mdash; <span class="project-name">Kitchen Appliance Redesign</span></p>
+            <div class="divider"></div>
+          </div>
+        </a>
+      </div>
+
+      <div class="project-card">
+        <a href="project.html?id=3d-enclosure">
+          <div class="project-image">
+            <img src="https://placehold.co/600x440/e8e8e8/999?text=." alt="3D Printed Enclosure" />
+          </div>
+          <div class="project-info">
+            <p class="project-label"><span class="category">Personal</span> &mdash; <span class="project-name">3D Printed Mechanical Enclosure</span></p>
+            <div class="divider"></div>
+          </div>
+        </a>
+      </div>
+
+      <div class="project-card offset">
+        <a href="project.html?id=human-centered">
+          <div class="project-image">
+            <img src="https://placehold.co/600x440/e8e8e8/999?text=." alt="Human-Centered Design" />
+          </div>
+          <div class="project-info">
+            <p class="project-label"><span class="category">Academic</span> &mdash; <span class="project-name">Human-Centered Product Design</span></p>
+            <div class="divider"></div>
+          </div>
+        </a>
+      </div>
+    </section>
   </main>
 
+  <script src="projects.js"></script>
   <script src="script.js"></script>
   <script src="footer.js"></script>
 </body>

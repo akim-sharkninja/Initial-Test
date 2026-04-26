@@ -127,6 +127,33 @@ main {
   padding-top: 80px;
 }
 
+/* Home header */
+.home-header {
+  padding: 100px 20px 32px;
+}
+
+.home-name {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.home-sub {
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 300;
+}
+
+@media (min-width: 768px) {
+  .home-header {
+    padding: 120px 48px 40px;
+  }
+
+  .home-name {
+    font-size: 40px;
+  }
+}
+
 /* Projects grid */
 .projects {
   display: grid;

@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Project — Andy Kim</title>
-  <link rel="stylesheet" href="styles.css?v=6" />
+  <link rel="stylesheet" href="styles.css?v=7" />
 </head>
 <body class="project-page">
 
@@ -96,8 +96,8 @@
         mediaContainer.appendChild(img);
       });
 
-      const prev = projects[currentIndex - 1] || null;
-      const next = projects[currentIndex + 1] || null;
+      const prev = projects[(currentIndex - 1 + projects.length) % projects.length];
+      const next = projects[(currentIndex + 1) % projects.length];
       const pagination = document.getElementById('project-pagination');
 
       function makeNavCard(p, direction) {
@@ -115,8 +115,8 @@
         return a;
       }
 
-      if (prev) pagination.appendChild(makeNavCard(prev, 'prev'));
-      if (next) pagination.appendChild(makeNavCard(next, 'next'));
+      pagination.appendChild(makeNavCard(prev, 'prev'));
+      pagination.appendChild(makeNavCard(next, 'next'));
     }
   </script>
 </body>
