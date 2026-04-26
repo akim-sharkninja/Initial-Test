@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Project — Andy Kim</title>
-  <link rel="stylesheet" href="styles.css?v=4" />
+  <link rel="stylesheet" href="styles.css?v=6" />
 </head>
 <body class="project-page">
 
@@ -62,18 +62,18 @@
 
       <div class="project-media" id="project-media"></div>
     </div>
-  </main>
 
-  <footer>
-    <button class="scroll-top" aria-label="Scroll to top">&#8743;</button>
-  </footer>
+    <div class="project-pagination" id="project-pagination"></div>
+  </main>
 
   <script src="projects.js"></script>
   <script src="script.js"></script>
+  <script src="footer.js"></script>
   <script>
     const params = new URLSearchParams(window.location.search);
     const id = params.get('id');
-    const project = projects.find(p => p.id === id);
+    const currentIndex = projects.findIndex(p => p.id === id);
+    const project = projects[currentIndex];
 
     if (!project) {
       window.location.href = 'index.html';
@@ -95,6 +95,28 @@
         img.alt = project.name;
         mediaContainer.appendChild(img);
       });
+
+      const prev = projects[currentIndex - 1] || null;
+      const next = projects[currentIndex + 1] || null;
+      const pagination = document.getElementById('project-pagination');
+
+      function makeNavCard(p, direction) {
+        const a = document.createElement('a');
+        a.href = `project.html?id=${p.id}`;
+        a.className = `pagination-card pagination-${direction}`;
+        a.style.backgroundImage = `url('${p.hero}')`;
+        a.innerHTML = `
+          <div class="pagination-overlay"></div>
+          <div class="pagination-content">
+            <span class="pagination-dir">${direction === 'prev' ? '&larr; Previous' : 'Next &rarr;'}</span>
+            <span class="pagination-name">${p.name}</span>
+          </div>
+        `;
+        return a;
+      }
+
+      if (prev) pagination.appendChild(makeNavCard(prev, 'prev'));
+      if (next) pagination.appendChild(makeNavCard(next, 'next'));
     }
   </script>
 </body>
