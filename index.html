@@ -4,12 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Andy Kim</title>
-  <link rel="stylesheet" href="styles.css?v=7" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=8" />
 </head>
 <body>
 
   <header>
-    <a class="logo" href="index.html">AK</a>
+    <a class="logo" href="index.html">Andy Kim</a>
     <button class="menu-toggle" aria-label="Toggle menu">
       <span></span>
       <span></span>
@@ -26,64 +29,35 @@
   </nav>
 
   <main>
-    <div class="home-header">
-      <h1 class="home-name">Andy Kim</h1>
-      <p class="home-sub">Product Design Engineer &mdash; SharkNinja</p>
+    <div class="home-intro">
+      <p class="home-greeting">Hello!</p>
+      <p class="home-bio">I'm Andy, a Product Design Engineer at SharkNinja. I work at the intersection of mechanical engineering and human-centered design, building consumer products across the Shark and Ninja lines.</p>
     </div>
 
-    <section class="projects">
-      <div class="project-card">
-        <a href="project.html?id=shark-vacuum">
-          <div class="project-image">
-            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=600&h=440&q=80" alt="Shark Cordless Vacuum" />
-          </div>
-          <div class="project-info">
-            <p class="project-label"><span class="category">Shark</span> &mdash; <span class="project-name">Cordless Vacuum System</span></p>
-            <div class="divider"></div>
-          </div>
-        </a>
-      </div>
-
-      <div class="project-card offset">
-        <a href="project.html?id=ninja-kitchen">
-          <div class="project-image">
-            <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=600&h=440&q=80" alt="Ninja Kitchen Appliance" />
-          </div>
-          <div class="project-info">
-            <p class="project-label"><span class="category">Ninja</span> &mdash; <span class="project-name">Kitchen Appliance Redesign</span></p>
-            <div class="divider"></div>
-          </div>
-        </a>
-      </div>
-
-      <div class="project-card">
-        <a href="project.html?id=3d-enclosure">
-          <div class="project-image">
-            <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=600&h=440&q=80" alt="3D Printed Enclosure" />
-          </div>
-          <div class="project-info">
-            <p class="project-label"><span class="category">Personal</span> &mdash; <span class="project-name">3D Printed Mechanical Enclosure</span></p>
-            <div class="divider"></div>
-          </div>
-        </a>
-      </div>
-
-      <div class="project-card offset">
-        <a href="project.html?id=human-centered">
-          <div class="project-image">
-            <img src="https://images.unsplash.com/photo-1572021335469-31706a17aaef?auto=format&fit=crop&w=600&h=440&q=80" alt="Human-Centered Design" />
-          </div>
-          <div class="project-info">
-            <p class="project-label"><span class="category">Academic</span> &mdash; <span class="project-name">Human-Centered Product Design</span></p>
-            <div class="divider"></div>
-          </div>
-        </a>
-      </div>
-    </section>
+    <section class="projects" id="projects"></section>
   </main>
 
   <script src="projects.js"></script>
   <script src="script.js"></script>
   <script src="footer.js"></script>
+  <script>
+    const grid = document.getElementById('projects');
+    projects.forEach((p, i) => {
+      const card = document.createElement('div');
+      card.className = 'project-card';
+      card.innerHTML = `
+        <a href="project.html?id=${p.id}">
+          <div class="project-image">
+            <img src="${p.thumbnail}" alt="${p.name}" loading="${i < 2 ? 'eager' : 'lazy'}" />
+          </div>
+          <div class="project-info">
+            <span class="project-label project-name">${p.name}</span>
+            <span class="project-tagline">${p.tagline}</span>
+          </div>
+        </a>
+      `;
+      grid.appendChild(card);
+    });
+  </script>
 </body>
 </html>

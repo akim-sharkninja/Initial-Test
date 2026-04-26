@@ -4,12 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Project — Andy Kim</title>
-  <link rel="stylesheet" href="styles.css?v=7" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=8" />
 </head>
 <body class="project-page">
 
   <header>
-    <a class="logo" href="index.html">AK</a>
+    <a class="logo" href="index.html">Andy Kim</a>
     <button class="menu-toggle" aria-label="Toggle menu">
       <span></span>
       <span></span>
@@ -19,50 +22,18 @@
 
   <nav class="nav-overlay">
     <ul>
-      <li><a href="work.html">Work</a></li>
+      <li><a href="index.html">Work</a></li>
       <li><a href="about.html">About</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
   </nav>
 
   <main class="project-detail">
+    <div class="project-detail-header" id="detail-header"></div>
     <div class="project-hero">
       <img id="hero-img" src="" alt="" />
     </div>
-
-    <div class="project-body">
-      <h1 id="project-title"></h1>
-
-      <div class="project-meta">
-        <div class="meta-left">
-          <div class="meta-block">
-            <p class="meta-label-heading">Type</p>
-            <p class="meta-value" id="project-type"></p>
-          </div>
-          <div class="meta-block">
-            <p class="meta-label-heading">Year</p>
-            <p class="meta-value" id="project-year"></p>
-          </div>
-          <div class="meta-block">
-            <p class="meta-label-heading">Skills</p>
-            <p class="meta-value" id="project-skills"></p>
-          </div>
-        </div>
-        <div class="meta-right">
-          <div class="meta-block">
-            <p class="meta-label-heading">Opportunity</p>
-            <p class="meta-value" id="project-opportunity"></p>
-          </div>
-          <div class="meta-block">
-            <p class="meta-label-heading">Design</p>
-            <p class="meta-value" id="project-design"></p>
-          </div>
-        </div>
-      </div>
-
-      <div class="project-media" id="project-media"></div>
-    </div>
-
+    <div class="project-sections" id="project-sections"></div>
     <div class="project-pagination" id="project-pagination"></div>
   </main>
 
@@ -75,49 +46,81 @@
     const currentIndex = projects.findIndex(p => p.id === id);
     const project = projects[currentIndex];
 
-    if (!project) {
-      window.location.href = 'index.html';
-    } else {
-      document.title = `${project.name} — Andy Kim`;
-      document.getElementById('hero-img').src = project.hero;
-      document.getElementById('hero-img').alt = project.name;
-      document.getElementById('project-title').textContent = project.name;
-      document.getElementById('project-type').textContent = project.type;
-      document.getElementById('project-year').textContent = project.year;
-      document.getElementById('project-skills').textContent = project.skills;
-      document.getElementById('project-opportunity').textContent = project.opportunity;
-      document.getElementById('project-design').textContent = project.design;
+    if (!project) { window.location.href = 'index.html'; }
 
-      const mediaContainer = document.getElementById('project-media');
-      project.media.forEach(src => {
-        const img = document.createElement('img');
-        img.src = src;
-        img.alt = project.name;
-        mediaContainer.appendChild(img);
-      });
+    document.title = `${project.name} — Andy Kim`;
 
-      const prev = projects[(currentIndex - 1 + projects.length) % projects.length];
-      const next = projects[(currentIndex + 1) % projects.length];
-      const pagination = document.getElementById('project-pagination');
+    // Header
+    const header = document.getElementById('detail-header');
+    header.innerHTML = `
+      <h1 class="project-detail-title">${project.name}</h1>
+      <p class="project-detail-intro">${project.intro}</p>
+      <div class="project-detail-meta">
+        <div class="project-detail-meta-item">
+          <span class="project-detail-meta-label">Type</span>
+          <span class="project-detail-meta-value">${project.type}</span>
+        </div>
+        <div class="project-detail-meta-item">
+          <span class="project-detail-meta-label">Year</span>
+          <span class="project-detail-meta-value">${project.year}</span>
+        </div>
+        <div class="project-detail-meta-item">
+          <span class="project-detail-meta-label">Skills</span>
+          <span class="project-detail-meta-value">${project.skills}</span>
+        </div>
+      </div>
+    `;
 
-      function makeNavCard(p, direction) {
-        const a = document.createElement('a');
-        a.href = `project.html?id=${p.id}`;
-        a.className = `pagination-card pagination-${direction}`;
-        a.style.backgroundImage = `url('${p.hero}')`;
-        a.innerHTML = `
-          <div class="pagination-overlay"></div>
-          <div class="pagination-content">
-            <span class="pagination-dir">${direction === 'prev' ? '&larr; Previous' : 'Next &rarr;'}</span>
-            <span class="pagination-name">${p.name}</span>
-          </div>
-        `;
-        return a;
+    // Hero
+    const heroImg = document.getElementById('hero-img');
+    heroImg.src = project.hero;
+    heroImg.alt = project.name;
+
+    // Sections
+    const sectionsEl = document.getElementById('project-sections');
+    project.sections.forEach(section => {
+      const block = document.createElement('div');
+      block.className = 'section-block';
+
+      let html = `<p class="section-label">${section.label}</p>`;
+      if (section.content) {
+        html += `<p class="section-text">${section.content}</p>`;
       }
+      block.innerHTML = html;
+      sectionsEl.appendChild(block);
 
-      pagination.appendChild(makeNavCard(prev, 'prev'));
-      pagination.appendChild(makeNavCard(next, 'next'));
+      if (section.images) {
+        section.images.forEach(src => {
+          const imgWrap = document.createElement('div');
+          imgWrap.className = 'section-image';
+          imgWrap.innerHTML = `<img src="${src}" alt="${project.name}" loading="lazy" />`;
+          sectionsEl.appendChild(imgWrap);
+        });
+      }
+    });
+
+    // Pagination
+    const prev = projects[(currentIndex - 1 + projects.length) % projects.length];
+    const next = projects[(currentIndex + 1) % projects.length];
+    const pagination = document.getElementById('project-pagination');
+
+    function makeNavCard(p, direction) {
+      const a = document.createElement('a');
+      a.href = `project.html?id=${p.id}`;
+      a.className = `pagination-card pagination-${direction}`;
+      a.style.backgroundImage = `url('${p.hero}')`;
+      a.innerHTML = `
+        <div class="pagination-overlay"></div>
+        <div class="pagination-content">
+          <span class="pagination-dir">${direction === 'prev' ? '&larr; Previous' : 'Next &rarr;'}</span>
+          <span class="pagination-name">${p.name}</span>
+        </div>
+      `;
+      return a;
     }
+
+    pagination.appendChild(makeNavCard(prev, 'prev'));
+    pagination.appendChild(makeNavCard(next, 'next'));
   </script>
 </body>
 </html>
