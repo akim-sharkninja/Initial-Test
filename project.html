@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project — Andy Kim</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="project-page">
+
+  <header>
+    <a class="logo" href="index.html">AK</a>
+    <button class="menu-toggle" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <nav class="nav-overlay">
+    <ul>
+      <li><a href="index.html#work">Work</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="mailto:andy.kim@sharkninja.com">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main class="project-detail">
+    <div class="project-hero">
+      <img id="hero-img" src="" alt="" />
+    </div>
+
+    <div class="project-body">
+      <h1 id="project-title"></h1>
+
+      <div class="project-meta">
+        <div class="meta-left">
+          <div class="meta-block">
+            <p class="meta-label" id="project-type"></p>
+            <p class="meta-value" id="project-year"></p>
+          </div>
+          <div class="meta-block">
+            <p class="meta-label-heading">Skills</p>
+            <p class="meta-value" id="project-skills"></p>
+          </div>
+        </div>
+        <div class="meta-right">
+          <div class="meta-block">
+            <p class="meta-label-heading">Opportunity</p>
+            <p class="meta-value" id="project-opportunity"></p>
+          </div>
+          <div class="meta-block">
+            <p class="meta-label-heading">Design</p>
+            <p class="meta-value" id="project-design"></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-media" id="project-media"></div>
+    </div>
+  </main>
+
+  <footer>
+    <button class="scroll-top" aria-label="Scroll to top">&#8743;</button>
+  </footer>
+
+  <script src="projects.js"></script>
+  <script src="script.js"></script>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+    const project = projects.find(p => p.id === id);
+
+    if (!project) {
+      window.location.href = 'index.html';
+    } else {
+      document.title = `${project.name} — Andy Kim`;
+      document.getElementById('hero-img').src = project.hero;
+      document.getElementById('hero-img').alt = project.name;
+      document.getElementById('project-title').textContent = project.name;
+      document.getElementById('project-type').textContent = project.type;
+      document.getElementById('project-year').textContent = project.year;
+      document.getElementById('project-skills').textContent = project.skills;
+      document.getElementById('project-opportunity').textContent = project.opportunity;
+      document.getElementById('project-design').textContent = project.design;
+
+      const mediaContainer = document.getElementById('project-media');
+      project.media.forEach(src => {
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = project.name;
+        mediaContainer.appendChild(img);
+      });
+    }
+  </script>
+</body>
+</html>
