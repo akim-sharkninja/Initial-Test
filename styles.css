@@ -279,32 +279,39 @@ footer {
 }
 
 .project-meta {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0 24px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
   margin-bottom: 48px;
   padding-bottom: 40px;
   border-bottom: 1px solid var(--divider);
 }
 
-.meta-left,
-.meta-right {
+.meta-left {
+  flex: 0 0 38%;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px;
+}
+
+.meta-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .meta-block {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 5px;
 }
 
 .meta-label-heading {
-  font-size: 11px;
+  font-size: 10px;
   color: var(--muted);
-  font-weight: 400;
-  letter-spacing: 0.06em;
+  font-weight: 500;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
@@ -313,18 +320,6 @@ footer {
   color: var(--text);
   font-weight: 300;
   line-height: 1.65;
-}
-
-#project-type {
-  font-size: 13px;
-  color: var(--muted);
-  font-weight: 400;
-}
-
-#project-year {
-  font-size: 13px;
-  color: var(--text);
-  font-weight: 300;
 }
 
 .project-media {
