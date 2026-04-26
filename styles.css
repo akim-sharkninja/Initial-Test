@@ -368,6 +368,20 @@ main { padding-top: 56px; }
   max-width: 680px;
 }
 
+.about-photo {
+  width: 100%;
+  margin-bottom: 36px;
+  background: #f2f2f2;
+}
+
+.about-photo img {
+  width: 100%;
+  display: block;
+  max-height: 70vh;
+  object-fit: cover;
+  object-position: top center;
+}
+
 .about-hello {
   font-size: 26px;
   font-weight: 700;
@@ -457,6 +471,54 @@ main { padding-top: 56px; }
 }
 
 .about-contact-link:hover { opacity: 0.4; }
+
+/* ─── MORE PAGE ─── */
+.more-page {
+  padding: 80px 20px 80px;
+}
+
+.more-section {
+  margin-bottom: 48px;
+}
+
+.more-section-label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+
+.more-section-desc {
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 1.65;
+  color: var(--text);
+  max-width: 480px;
+  margin-bottom: 16px;
+}
+
+.more-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3px;
+}
+
+.more-grid img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.2s ease;
+}
+
+.more-grid img:hover { opacity: 0.85; }
+
+@media (min-width: 768px) {
+  .more-page { padding: 100px 32px 100px; }
+  .more-grid { grid-template-columns: repeat(5, 1fr); gap: 4px; }
+}
 
 /* ─── CONTACT PAGE ─── */
 .contact-page {

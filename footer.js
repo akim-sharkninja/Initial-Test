@@ -7,6 +7,7 @@
       <nav class="footer-nav">
         <a href="index.html">Work</a>
         <a href="about.html">About</a>
+        <a href="more.html">More</a>
         <a href="contact.html">Contact</a>
       </nav>
       <p class="footer-copy">&copy; ${new Date().getFullYear()}</p>
