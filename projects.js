@@ -17,7 +17,8 @@ const projects = [
       },
       {
         label: "Approach",
-        content: "A redesigned chassis relocates the motor and battery assembly closer to the hand grip, lowering the effective centre of mass. Prototypes were validated through timed cleaning trials with participants across age groups."
+        content: "A redesigned chassis relocates the motor and battery assembly closer to the hand grip, lowering the effective centre of mass. Prototypes were validated through timed cleaning trials with participants across age groups.",
+        video: "https://www.youtube.com/embed/dQw4w9WgXcQ"
       },
       {
         label: "Design",
